@@ -4,9 +4,8 @@
   "description": "Read a JSON file, transform its data, and write the result to a Markdown file — all using Node.js built-in modules, no `npm install` needed.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "epita": "node index.js",
-    "dev": "nodemon solut/index.js"
+      "dev": "nodemon index.js",
+      "start": "node index.js"
   },
   "repository": {
     "type": "git",
