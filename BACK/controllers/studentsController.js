@@ -1,7 +1,7 @@
 // TODO 1: Import the functions you need from ../services/studentServiceMongoDB.js
 import {
   findAllStudents,
-  findStudentById,
+  findByIDStudents,
   createStudentService,
   updateStudentService,
   deleteStudentService,
