@@ -6,6 +6,7 @@ import cors from "cors";
 
 import { connectToMongoDB } from "./config/db.js";
 import studentRouter from "./routes/studentsRoute.js";
+import userRouter from "./routes/userRoute.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -24,6 +25,7 @@ app.use(express.static('public'))
 // Hint: app.use("/api/students", studentRouter)
 
 app.use("/api/students", studentRouter)
+app.use("/api/auth", userRouter);
 
 app.get("/", (req, res) => {
   res.send("Server is running ...");
