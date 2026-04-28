@@ -4,8 +4,13 @@ import cors from "cors";
 // TODO 1: Import connectToMongoDB from ./config/db.js
 // TODO 2: Import studentRouter from ./routes/studentsRoute.js
 
+import { connectToMongoDB } from "./config/db.js";
+import studentRouter from "./routes/studentsRoute.js";
+
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+
+connectToMongoDB();
 
 // TODO 3: Call connectToMongoDB() here to establish the DB connection
 
@@ -17,6 +22,8 @@ app.use(express.static('public'))
 
 // TODO 4: Mount studentRouter at "/api/students"
 // Hint: app.use("/api/students", studentRouter)
+
+app.use("/api/students", studentRouter)
 
 app.get("/", (req, res) => {
   res.send("Server is running ...");

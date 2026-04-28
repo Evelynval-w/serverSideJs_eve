@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "epita": "node solut/index.js",
-    "dev": "nodemon solut/index.js"
+    "epita": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
