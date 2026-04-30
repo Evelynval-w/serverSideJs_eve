@@ -192,3 +192,58 @@ export default studentRouter;
 - Controllers should never contain database logic — keep that in the service layer
 - Use `res.status(code).json(data)` to set the status code and send JSON in one call
 - Don't forget to add your `.env` file — without `MONGO_URI` the server will exit immediately
+
+
+
+---
+
+## Final Assessment Submission — Mentor Circle Resource
+
+**Author:** Makuochukwu Okoene
+**Branch:** `05`
+**Resource added:** Mentor Circle (school mentorship groups led by senior students)
+
+### Schema
+
+| Field | Type | Required |
+|---|---|---|
+| `name` | String | yes (unique) |
+| `focus` | String | yes |
+| `chief` | String | yes |
+| `language` | String | yes |
+| `codenames` | Array of String | no |
+| `foundedYear` | Number | yes |
+
+### Endpoints (all protected by `authCheck`)
+
+| Method | Route | Description |
+|---|---|---|
+| GET | `/api/mentor-circles` | List all circles |
+| GET | `/api/mentor-circles/:id` | Get one circle by ID |
+| POST | `/api/mentor-circles` | Create a circle |
+| PUT | `/api/mentor-circles/:id` | Update a circle |
+| DELETE | `/api/mentor-circles/:id` | Delete a circle |
+
+Authentication uses JWT via `POST /api/auth/login`. The token must be passed as `Authorization: Bearer <token>` on all `/api/mentor-circles` requests.
+
+### How to run locally
+
+1. `cd BACK && npm install`
+2. Create `BACK/.env` with `MONGO_URI`, `JWT_SECRET`, and `PORT=3000`
+3. `npm run dev`
+4. Register a user: `POST /api/students` with `{ name, email, password, gpa, major }`
+5. Login: `POST /api/auth/login` with `{ email, password }` to receive a token
+6. Use the token to test Mentor Circle endpoints
+
+### Testing evidence
+
+A complete Postman collection is included in `BACK/postman/MentorCircle.postman_collection.json` covering all 6 rubric checks, including the unauthenticated `401` test.
+
+### Architecture
+
+Standard 3-layer pattern mirroring the student resource:
+
+- `models/mentorCircleModel.js` — Mongoose schema
+- `services/mentorCircleService.js` — Database operations
+- `controllers/mentorCircleController.js` — Request handlers with try/catch and proper status codes
+- `routes/mentorCircleRoute.js` — Express router protected by `authCheck` middleware
