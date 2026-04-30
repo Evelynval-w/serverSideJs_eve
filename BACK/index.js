@@ -7,6 +7,7 @@ import cors from "cors";
 import { connectToMongoDB } from "./config/db.js";
 import studentRouter from "./routes/studentsRoute.js";
 import userRouter from "./routes/userRoute.js";
+import mentorCircleRouter from "./routes/mentorCircleRoute.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -26,6 +27,7 @@ app.use(express.static('public'))
 
 app.use("/api/students", studentRouter)
 app.use("/api/auth", userRouter);
+app.use("/api/mentor-circles", mentorCircleRouter);
 
 app.get("/", (req, res) => {
   res.send("Server is running ...");

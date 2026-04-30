@@ -44,6 +44,7 @@ export const createStudent = async (req, res) => {
   // call createStudentService({ name, email, password }), return 201 + success message
   // on error: return 500 + error message
   try {
+    console.log("REQ.BODY:", req.body);
     const { name, email, password, gpa, major } = req.body;
     const student = await createStudentService({ name, email, password, gpa, major });
     res.status(201).json({ message: "Student created", student });
